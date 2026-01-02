@@ -1,5 +1,3 @@
-**<span style="font-size:72px; font-weight:900;">Do not use Vercel. We do not recomend using it for this project, or any others. They are copying this repository without following the terms of the MIT license, have ignored multiple requests to not be featured on their webpage, and have refused a copyright request to stop using this content without following the license.</span>**
-
 <p align="center">
     <picture>
         <img width="420" alt="SaaS Starter Header reading: The open source, fast, and free to host SaaS template" src="https://github.com/CriticalMoments/CMSaasStarter/assets/848343/12f47617-e5be-4694-affc-23310e54b885">
