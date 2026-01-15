@@ -5,7 +5,7 @@ import {
   PUBLIC_SUPABASE_URL,
 } from "$env/static/public"
 import { createServerClient } from "@supabase/ssr"
-import { createClient } from "@supabase/supabase-js"
+import { createClient, type AMREntry } from "@supabase/supabase-js"
 import type { Handle } from "@sveltejs/kit"
 import { sequence } from "@sveltejs/kit/hooks"
 
@@ -21,7 +21,13 @@ export const supabase: Handle = async ({ event, resolve }) => {
          * the cookie options. Setting `path` to `/` replicates previous/
          * standard behavior.
          */
-        setAll: (cookiesToSet) => {
+        setAll: (
+          cookiesToSet: {
+            name: string
+            value: string
+            options: Record<string, unknown>
+          }[],
+        ) => {
           cookiesToSet.forEach(({ name, value, options }) => {
             event.cookies.set(name, value, { ...options, path: "/" })
           })
@@ -74,7 +80,11 @@ export const supabase: Handle = async ({ event, resolve }) => {
       return { session, user, amr: null }
     }
 
-    return { session, user, amr: aal.currentAuthenticationMethods }
+    return {
+      session,
+      user,
+      amr: aal.currentAuthenticationMethods as AMREntry[],
+    }
   }
 
   return resolve(event, {
